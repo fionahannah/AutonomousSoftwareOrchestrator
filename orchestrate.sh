@@ -71,7 +71,8 @@ create_response=$(curl -sS -X POST -H "Authorization: Bearer $ASO_PAT" \
     echo "🔬 Raw response from GitHub:"
     echo "$create_response"
 
-    echo "📦 Created: $(echo \"$create_response\" | jq -r '.full_name // \"unknown\"')"
+    repo_name=$(echo "$create_response" | jq -r '.full_name // "unknown"')
+    echo "📦 Created: $repo_name"
   fi
 done
 
